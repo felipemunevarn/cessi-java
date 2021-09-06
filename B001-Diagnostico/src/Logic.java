@@ -47,6 +47,6 @@ public class Logic {
 		hours = seg / 3600;
 		min = (seg - hours * 3600) / 60;
 		seg = seg - hours * 3600 - min * 60;
-		System.out.println("Duración total " + hours + ":" + min + ":" + seg + " hs");
+		System.out.println("Duración total " + hours + "h:" + min + "m:" + seg + "s");
 	}
 }
