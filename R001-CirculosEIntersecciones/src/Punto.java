@@ -2,24 +2,14 @@
 public class Punto {
 	private int x;
 	private int y;
-	public Punto() {
-		super();
-	}
 	public Punto(int x, int y) {
-		super();
 		this.x = x;
 		this.y = y;
 	}
-	public int getX() {
-		return x;
+	public double distanceCon(Punto p2) {
+		double distx, disty;
+		distx = (this.x - p2.x);
+		disty = (this.y - p2.y); 
+		return Math.pow((distx * distx + disty * disty), 0.5);
 	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public int getY() {
-		return y;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}	
 }
