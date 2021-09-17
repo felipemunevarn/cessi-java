@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>R001-CirculosEIntersecciones</name>
+	<name>R002-InversionesMensuales</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1631888811086</id>
+			<id>1631805373897</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
