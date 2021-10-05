@@ -13,6 +13,20 @@ public class TestPony {
 		Assert.assertEquals(3, App.caballos(new int[] { 33, 8, 16, 47, 30, 30, 46 }));
 		Assert.assertEquals(3, App.caballos(new int[] { 51, 51, 51 }));
 		Assert.assertEquals(4, App.caballos(new int[] { 6, 24, 6, 8, 28, 8, 23, 47, 17, 29, 37, 18, 40, 49 }));
+		
+		Assert.assertEquals(1, App.caballos2(new int[] { 18, 15 }));
+		Assert.assertEquals(2, App.caballos2(new int[] { 43, 23, 40, 13 }));
+		Assert.assertEquals(3, App.caballos2(new int[] { 33, 8, 16, 47, 30, 30, 46 }));
+		Assert.assertEquals(3, App.caballos2(new int[] { 51, 51, 51 }));
+		Assert.assertEquals(4, App.caballos2(new int[] { 6, 24, 6, 8, 28, 8, 23, 47, 17, 29, 37, 18, 40, 49 }));
+	
+		Assert.assertEquals(1, App.caballos3(new int[] { 18, 15 }));
+		Assert.assertEquals(2, App.caballos3(new int[] { 43, 23, 40, 13 }));
+		Assert.assertEquals(3, App.caballos3(new int[] { 33, 8, 16, 47, 30, 30, 46 }));
+		Assert.assertEquals(3, App.caballos3(new int[] { 51, 51, 51 }));
+		Assert.assertEquals(4, App.caballos3(new int[] { 6, 24, 6, 8, 28, 8, 23, 47, 17, 29, 37, 18, 40, 49 }));
+		Assert.assertEquals(2, App.caballos3(new int[] { 51,51,3 }));
+				
 	}
 
 }
