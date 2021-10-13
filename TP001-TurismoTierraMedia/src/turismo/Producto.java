@@ -1,7 +1,7 @@
 package turismo;
 
 public abstract class Producto {
-	protected String nombre;
+	private String nombre;
 	protected int costo;
 	protected double tiempo;
 	
