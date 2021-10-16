@@ -6,6 +6,7 @@ public class App {
 		Sistema s1 = new Sistema();
 		s1.crearUsuarios();
 		s1.crearAtracciones();
+		s1.crearPromociones();
 	}
 
 }

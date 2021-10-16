@@ -8,4 +8,5 @@
     <fullyQualifiedTypeName name="turismo.Producto"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.sun.tools.javac.code.Type.ForAll"/>
 </qualifiedTypeNameHistroy>

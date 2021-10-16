@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Sistema {
 	private List<Atraccion> atraccionesList = new ArrayList<Atraccion>();
 	private List<Usuario> usuariosList = new ArrayList<Usuario>();
+	private List<Promocion> promosList = new ArrayList<Promocion>();
 	
 	public void crearAtracciones() {
 		try {
@@ -34,22 +35,39 @@ public class Sistema {
 			Scanner sc = new Scanner(file);
 			while (sc.hasNextLine()) {
 				String[] temp = sc.nextLine().strip().split(" ");
+				List<Atraccion> listaAtraccionesTemp = new ArrayList<Atraccion>();
 				if (temp[0].equalsIgnoreCase("ConDescuento")) {
-					ConDescuento c1 = new ConDescuento();
+					for(int i = 3; i < temp.length; i++) {
+						String n = temp[i];
+						atraccionesList.stream()
+							.filter(e -> (e.getNombre().equalsIgnoreCase(n)))
+							.forEach(e -> listaAtraccionesTemp.add(e));					
+					}					
+					String nombre = temp[1];
+					int costo = Integer.parseInt(temp[2]);
+					ConDescuento p1 = new ConDescuento(nombre, costo, listaAtraccionesTemp);
+					System.out.println(p1);
+					promosList.add(p1);
 				}
-				String nombre = temp[0];
-				int costo = Integer.parseInt(temp[1]);
-				double tiempo = Double.parseDouble(temp[2]);
-				int cupo = Integer.parseInt(temp[3]);
-				Atraccion a1 = new Atraccion(nombre, costo, tiempo, cupo);
-				System.out.println(a1);
-				atraccionesList.add(a1);
+				if (temp[0].equalsIgnoreCase("Porcentual")) {
+					for(int i = 3; i < temp.length; i++) {
+						String n = temp[i];
+						atraccionesList.stream()
+							.filter(e -> (e.getNombre().equalsIgnoreCase(n)))
+							.forEach(e -> listaAtraccionesTemp.add(e));					
+					}					
+					String nombre = temp[1];
+					int dcto = Integer.parseInt(temp[2]);
+					Porcentual p1 = new Porcentual(nombre, dcto, listaAtraccionesTemp);
+					System.out.println(p1);
+					promosList.add(p1);
+				}				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+		
 	public void crearUsuarios() {
 		try {
 			File file = new File("/home/pipemun/Documents/cessi/TP001-TurismoTierraMedia/usuariosTexto.txt");

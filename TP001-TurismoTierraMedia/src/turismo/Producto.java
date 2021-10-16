@@ -1,7 +1,7 @@
 package turismo;
 
 public abstract class Producto {
-	private String nombre;
+	protected String nombre;
 	protected int costo;
 	protected double tiempo;
 	
@@ -23,4 +23,10 @@ public abstract class Producto {
 	public void ordenarProductos() {
 		
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
+	
 }
