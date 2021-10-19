@@ -2,11 +2,12 @@ package turismo;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Sistema {
-	private List<Atraccion> atraccionesList = new ArrayList<Atraccion>();
+	private static List<Atraccion> atraccionesList = new ArrayList<Atraccion>();
 	private List<Usuario> usuariosList = new ArrayList<Usuario>();
 	private List<Promocion> promosList = new ArrayList<Promocion>();
 	
@@ -15,7 +16,7 @@ public class Sistema {
 			File file = new File("/home/pipemun/Documents/cessi/TP001-TurismoTierraMedia/atraccionesTexto.txt");
 			Scanner sc = new Scanner(file);
 			while (sc.hasNextLine()) {
-				String[] temp = sc.nextLine().strip().split(" ");
+				String[] temp = sc.nextLine().strip().split("/");
 				String nombre = temp[0];
 				int costo = Integer.parseInt(temp[1]);
 				double tiempo = Double.parseDouble(temp[2]);
@@ -34,34 +35,28 @@ public class Sistema {
 			File file = new File("/home/pipemun/Documents/cessi/TP001-TurismoTierraMedia/promocionesTexto.txt");
 			Scanner sc = new Scanner(file);
 			while (sc.hasNextLine()) {
-				String[] temp = sc.nextLine().strip().split(" ");
-				List<Atraccion> listaAtraccionesTemp = new ArrayList<Atraccion>();
+				String[] temp = sc.nextLine().strip().split("/");
 				if (temp[0].equalsIgnoreCase("ConDescuento")) {
-					for(int i = 3; i < temp.length; i++) {
-						String n = temp[i];
-						atraccionesList.stream()
-							.filter(e -> (e.getNombre().equalsIgnoreCase(n)))
-							.forEach(e -> listaAtraccionesTemp.add(e));					
-					}					
 					String nombre = temp[1];
 					int costo = Integer.parseInt(temp[2]);
-					ConDescuento p1 = new ConDescuento(nombre, costo, listaAtraccionesTemp);
+					String[] arrTemp = Arrays.copyOfRange(temp, 3, temp.length);
+					ConDescuento p1 = new ConDescuento(nombre, costo, arrTemp);
 					System.out.println(p1);
 					promosList.add(p1);
 				}
-				if (temp[0].equalsIgnoreCase("Porcentual")) {
-					for(int i = 3; i < temp.length; i++) {
-						String n = temp[i];
-						atraccionesList.stream()
-							.filter(e -> (e.getNombre().equalsIgnoreCase(n)))
-							.forEach(e -> listaAtraccionesTemp.add(e));					
-					}					
-					String nombre = temp[1];
-					int dcto = Integer.parseInt(temp[2]);
-					Porcentual p1 = new Porcentual(nombre, dcto, listaAtraccionesTemp);
-					System.out.println(p1);
-					promosList.add(p1);
-				}				
+//				if (temp[0].equalsIgnoreCase("Porcentual")) {
+//					for(int i = 3; i < temp.length; i++) {
+//						String n = temp[i];
+//						atraccionesList.stream()
+//							.filter(e -> (e.getNombre().equalsIgnoreCase(n)))
+//							.forEach(e -> listaAtraccionesTemp.add(e));					
+//					}					
+//					String nombre = temp[1];
+//					int dcto = Integer.parseInt(temp[2]);
+//					Porcentual p1 = new Porcentual(nombre, dcto, listaAtraccionesTemp);
+//					System.out.println(p1);
+//					promosList.add(p1);
+//				}				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,4 +80,10 @@ public class Sistema {
 			e.printStackTrace();
 		}
 	}
+
+	public static List<Atraccion> getAtraccionesList() {
+		return atraccionesList;
+	}
+	
+	
 }

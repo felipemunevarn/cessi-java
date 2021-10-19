@@ -1,8 +1,8 @@
-Porcentual Pack_aventura 20 Bosque_Negro Mordor
-Porcentual Pack_aventura_plus 10 Bosque_Negro Mordor Lothorien
-ConDescuento Pack_degustacion_gold 46 Lothorien Erebor La_Comarca
-ConDescuento Pack_degustacion 36 Lothorien La_Comarca
-AxB Pack_aventura Minas_Tirith Abismo_de_Helm 
+Porcentual/Pack aventura/20/Bosque Negro/Mordor
+Porcentual/Pack aventura plus/10/Bosque Negro/Mordor/Lothorien
+ConDescuento/Pack degustacion gold/46/Lothorien/Erebor/La Comarca
+ConDescuento/Pack degustacion/36/Lothorien/La Comarca
+AxB/Pack aventura/Minas Tirith/Abismo de Helm/
 Erebor
-AxB Pack_aventura_extrema Minas_Tirith Lothorien
-Bosque_Negro Erebor
+AxB/Pack aventura extrema/Minas Tirith/Lothorien
+Bosque Negro/Erebor

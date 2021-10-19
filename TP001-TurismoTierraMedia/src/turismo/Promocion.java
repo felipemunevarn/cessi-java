@@ -1,12 +1,11 @@
 package turismo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public abstract class Promocion extends Producto {
-	protected List<Atraccion> atraccionesList = new ArrayList<Atraccion>();
+	protected String[] atraccionesList;
 	
-	public Promocion(String nombre, List<Atraccion> atraccionesList) {
+	public Promocion(String nombre, String[] atraccionesList) {
 		super(nombre);
 		this.atraccionesList = atraccionesList;
 		
@@ -14,6 +13,10 @@ public abstract class Promocion extends Producto {
 
 	@Override
 	public String toString() {
-		return super.toString() + " Promocion [atraccionesList=" + atraccionesList + "]";
+		return "Promocion [nombre=" + nombre + ", costo=" + costo + ", tiempo=" + tiempo + "] atraccionesList=" + Arrays.toString(atraccionesList);
 	}
+
+
+
+
 }
