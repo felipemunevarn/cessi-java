@@ -44,19 +44,22 @@ public class Sistema {
 					System.out.println(p1);
 					promosList.add(p1);
 				}
-//				if (temp[0].equalsIgnoreCase("Porcentual")) {
-//					for(int i = 3; i < temp.length; i++) {
-//						String n = temp[i];
-//						atraccionesList.stream()
-//							.filter(e -> (e.getNombre().equalsIgnoreCase(n)))
-//							.forEach(e -> listaAtraccionesTemp.add(e));					
-//					}					
-//					String nombre = temp[1];
-//					int dcto = Integer.parseInt(temp[2]);
-//					Porcentual p1 = new Porcentual(nombre, dcto, listaAtraccionesTemp);
-//					System.out.println(p1);
-//					promosList.add(p1);
-//				}				
+				if (temp[0].equalsIgnoreCase("Porcentual")) {
+					String nombre = temp[1];
+					int dcto = Integer.parseInt(temp[2]);
+					String[] arrTemp = Arrays.copyOfRange(temp, 3, temp.length);
+					Porcentual p1 = new Porcentual(nombre, dcto, arrTemp);
+					System.out.println(p1);
+					promosList.add(p1);
+				}
+				if (temp[0].equalsIgnoreCase("AxB")) {
+					String nombre = temp[1];
+					String[] arrTemp1 = Arrays.copyOfRange(temp, 2, temp.length);
+					String[] arrTemp2 = sc.nextLine().strip().split("/");
+					AxB p1 = new AxB(nombre, arrTemp1, arrTemp2);
+					System.out.println(p1);
+					promosList.add(p1);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,6 +87,13 @@ public class Sistema {
 	public static List<Atraccion> getAtraccionesList() {
 		return atraccionesList;
 	}
-	
+
+	public List<Usuario> getUsuariosList() {
+		return usuariosList;
+	}
+
+	public List<Promocion> getPromosList() {
+		return promosList;
+	}	
 	
 }

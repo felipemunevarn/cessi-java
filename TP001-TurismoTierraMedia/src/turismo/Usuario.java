@@ -19,6 +19,10 @@ public class Usuario {
 
 	public Producto getItinerarioList() {
 		return itinerarioList;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}	
 	
 }

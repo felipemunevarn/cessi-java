@@ -1,7 +1,5 @@
 package turismo;
 
-import java.util.List;
-
 public class ConDescuento extends Promocion{
 	
 	public ConDescuento(String nombre, int costo, String[] atraccionesList) {
