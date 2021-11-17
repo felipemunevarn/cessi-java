@@ -1,0 +1,64 @@
+SELECT * FROM publicacion;
+
+SELECT id, creador, contenido, f_publicacion, MIN(visitas) FROM publicacion;
+
+SELECT id, creador, contenido, f_publicacion, MAX(visitas) FROM publicacion;
+
+SELECT COUNT(*) FROM favoritos;
+
+SELECT p_id FROM favoritos GROUP BY p_id;
+
+SELECT u_nombre FROM favoritos GROUP BY u_nombre;
+
+SELECT alias, nombre, genero, DATE(f_nacimiento), f_registro FROM usuario;
+
+SELECT * 
+FROM publicacion 
+WHERE visitas >= 100
+ORDER BY f_publicacion DESC;
+
+SELECT * 
+FROM publicacion 
+WHERE visitas >= 100 AND (julianday('now') - julianday(f_publicacion) <= 365)
+ORDER BY f_publicacion DESC;
+
+SELECT * 
+FROM publicacion 
+WHERE visitas >= 100 AND (julianday('now') - julianday(f_publicacion) <= 365/2)
+ORDER BY f_publicacion DESC;
+
+SELECT SUM(visitas)
+FROM publicacion 
+WHERE julianday('now') - julianday(f_publicacion) <= 365/2;
+
+SELECT alias, f_nacimiento, CAST(((julianday('now') - julianday(f_nacimiento))/365.25) AS INT) AS edad
+FROM usuario;
+
+SELECT AVG(((julianday('now') - julianday(f_nacimiento))/365.25))
+FROM usuario;
+
+SELECT alias, nombre, genero, CAST(((julianday('now') - julianday(f_nacimiento))/365.25) AS INT) AS edad 
+FROM usuario
+WHERE edad >= 18
+ORDER BY f_nacimiento DESC;
+
+SELECT * FROM
+	(SELECT alias, nombre, genero, CAST(((julianday('now') - julianday(f_nacimiento))/365.25) AS INT) AS edad
+	FROM usuario
+	ORDER BY f_nacimiento DESC 
+	LIMIT 10)
+ORDER BY genero, nombre;
+
+SELECT * FROM usuario
+WHERE nombre LIKE "%Juan %";
+
+SELECT UPPER(alias), nombre, genero, f_nacimiento FROM usuario u
+INNER JOIN publicacion p ON p.creador = u.alias
+WHERE u.alias LIKE "a%"
+GROUP BY u.alias;
+
+SELECT * FROM publicacion
+WHERE LENGTH(contenido) < 20;
+
+SELECT id, creador, SUBSTR(contenido, 1, 20), f_publicacion, visitas
+FROM publicacion;

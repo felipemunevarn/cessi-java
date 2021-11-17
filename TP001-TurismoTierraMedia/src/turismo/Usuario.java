@@ -21,8 +21,19 @@ public class Usuario {
 		return itinerarioList;
 	}
 
+	public int getPresupuesto() {
+		return presupuesto;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}	
 	
+	public void comprar(Producto producto) {
+		setPresupuesto(presupuesto - producto.costo);
+	}
+
+	public void setPresupuesto(int presupuesto) {
+		this.presupuesto = presupuesto;
+	}
 }

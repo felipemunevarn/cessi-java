@@ -1,0 +1,44 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-17d11156ca5-2d2248f50b510916": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": ".db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "/home/pipemun/Documents/mintic/MioHackaton/DB (1).db",
+				"url": "jdbc:sqlite:/home/pipemun/Documents/mintic/MioHackaton/DB (1).db",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		},
+		"sqlite_jdbc-17d11d2132d-7c9027b34a803be": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "pq.db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "pq.db",
+				"url": "jdbc:sqlite:pq.db",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}

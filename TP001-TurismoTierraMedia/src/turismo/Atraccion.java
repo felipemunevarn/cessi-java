@@ -10,6 +10,6 @@ public class Atraccion extends Producto {
 
 	@Override
 	public String toString() {
-		return super.toString() + " Atraccion [cupo=" + cupo + "]";
+		return "Atraccion [nombre=" + super.nombre + ", costo=" + super.costo + ", tiempo=" + super.tiempo + "]";
 	}
 }

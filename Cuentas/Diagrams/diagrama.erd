@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="diagrama.erd">
+	<entities>
+		<data-source id="sqlite_jdbc-17d11156ca5-2d2248f50b510916">
+			<entity id="1" name="Bajas" fq-name="Bajas" order="0" x="945" y="440"/>
+			<entity id="2" name="BonosDescuento" fq-name="BonosDescuento" order="1" x="462" y="18"/>
+			<entity id="3" name="Calificacion" fq-name="Calificacion" order="2" x="110" y="397"/>
+			<entity id="4" name="CarritoCompra" fq-name="CarritoCompra" order="3" x="959" y="137"/>
+			<entity id="5" name="Comentario" fq-name="Comentario" order="4" x="319" y="598"/>
+			<entity id="6" name="ListaDeseos" fq-name="ListaDeseos" order="5" x="659" y="426"/>
+			<entity id="7" name="Lotes" fq-name="Lotes" order="6" x="945" y="587"/>
+			<entity id="8" name="Person" fq-name="Person" order="7" x="701" y="114"/>
+			<entity id="9" name="Producto" fq-name="Producto" order="8" x="658" y="615"/>
+			<entity id="10" name="Venta" fq-name="Venta" order="9" x="205" y="114"/>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="FK_BonosDescuento_Person" fq-name="BonosDescuento.FK_BonosDescuento_Person" type="fk" pk-ref="8" fk-ref="2"/>
+		<relation name="FK_Calificacion_Person" fq-name="Calificacion.FK_Calificacion_Person" type="fk" pk-ref="8" fk-ref="3"/>
+		<relation name="FK_CarritoCompra_Person" fq-name="CarritoCompra.FK_CarritoCompra_Person" type="fk" pk-ref="8" fk-ref="4"/>
+		<relation name="FK_Comentario_Person" fq-name="Comentario.FK_Comentario_Person" type="fk" pk-ref="8" fk-ref="5"/>
+		<relation name="FK_ListaDeseos_Person" fq-name="ListaDeseos.FK_ListaDeseos_Person" type="fk" pk-ref="8" fk-ref="6"/>
+		<relation name="FK_Venta_Person" fq-name="Venta.FK_Venta_Person" type="fk" pk-ref="8" fk-ref="10"/>
+		<relation name="FK_Bajas_Producto" fq-name="Bajas.FK_Bajas_Producto" type="fk" pk-ref="9" fk-ref="1"/>
+		<relation name="FK_Calificacion_Producto_2" fq-name="Calificacion.FK_Calificacion_Producto_2" type="fk" pk-ref="9" fk-ref="3"/>
+		<relation name="FK_CarritoCompra_Producto_2" fq-name="CarritoCompra.FK_CarritoCompra_Producto_2" type="fk" pk-ref="9" fk-ref="4"/>
+		<relation name="FK_Comentario_Producto_2" fq-name="Comentario.FK_Comentario_Producto_2" type="fk" pk-ref="9" fk-ref="5"/>
+		<relation name="FK_ListaDeseos_Producto_2" fq-name="ListaDeseos.FK_ListaDeseos_Producto_2" type="fk" pk-ref="9" fk-ref="6"/>
+		<relation name="FK_Lotes_Producto" fq-name="Lotes.FK_Lotes_Producto" type="fk" pk-ref="9" fk-ref="7"/>
+		<relation name="FK_Venta_Producto_2" fq-name="Venta.FK_Venta_Producto_2" type="fk" pk-ref="9" fk-ref="10"/>
+		<relation name="FK_BonosDescuento_Venta_2" fq-name="BonosDescuento.FK_BonosDescuento_Venta_2" type="fk" pk-ref="10" fk-ref="2"/>
+	</relations>
+</diagram>
