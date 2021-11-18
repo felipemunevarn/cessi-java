@@ -1,29 +1,39 @@
 package turismo.model;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import turismo.DAO.AtraccionDAO;
 import turismo.DAO.ConnectionProvider;
-import turismo.DAO.ItinerarioDAO;
+import turismo.DAO.PromocionDAO;
 import turismo.DAO.UsuarioDAO;
 
 public class App {
 
 	public static void main(String[] args) throws SQLException {
+//		Crea usuarios
 		UsuarioDAO udao = new UsuarioDAO();
 		List<Usuario> users = udao.findAll();
-		System.out.println(users);
 		
+//		Crea atracciones
 		AtraccionDAO adao = new AtraccionDAO();
-		List<Atraccion> parks = adao.findAll();
-		System.out.println(parks);		
+		List<Atraccion> parks = adao.findAll();		
 		
-		List<Atraccion> parksCupoArriba13 = adao.findByCupo(13);
-		System.out.println(parksCupoArriba13);
+//		Crea promos
+		PromocionDAO pdao = new PromocionDAO();
+		List<AxB> promoAxB = pdao.findAllAxB();
+		List<ConDescuento> promoConDcto = pdao.findAllConDescuento();
+		List<Porcentual> promoPorcentual = pdao.findAllPorcentual();
+
+//		Crea ofertables
+		List<Producto> ofertables = new LinkedList<Producto>();
+		ofertables.addAll(parks);
+		ofertables.addAll(promoAxB);
+		ofertables.addAll(promoConDcto);
+		ofertables.addAll(promoPorcentual);
 		
-		ItinerarioDAO idao = new ItinerarioDAO();
-		idao.insert(1, 0, 1);
+		System.out.println(ofertables);
 		
 		ConnectionProvider.close();
 	}
