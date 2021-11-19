@@ -1,6 +1,7 @@
 package turismoModel;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AxB extends Promocion {
@@ -35,6 +36,27 @@ public class AxB extends Promocion {
 			costoAtraccionesGratis += atraccionesGratis.get(i).getCosto();
 		}
 		return costoTotal + costoAtraccionesGratis;
+	}
+	
+	@Override
+	public Double getTiempo() {
+		// TODO Auto-generated method stub
+		double tiempoHastaAhora = 0;
+		for (int i = 0; i < atraccionesList.size(); i++) {
+			tiempoHastaAhora += atraccionesList.get(i).getTiempo();
+		}
+		for (int i = 0; i < atraccionesGratis.size(); i++) {
+			tiempoHastaAhora += atraccionesGratis.get(i).getTiempo();
+		}
+		return tiempoHastaAhora;
+	}
+	
+	@Override
+	public List<Atraccion> getAtraccionesList() {
+		List<Atraccion> todasAtrac = new LinkedList<Atraccion>();
+		todasAtrac.addAll(atraccionesList);
+		todasAtrac.addAll(atraccionesGratis);
+		return todasAtrac;
 	}
 
 	public String getNombre() {

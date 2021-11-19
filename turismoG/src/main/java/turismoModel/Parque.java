@@ -18,16 +18,7 @@ public class Parque {
 	private List<Usuario> usuariosList = new ArrayList<Usuario>();
 	private List<Promocion> promosList = new ArrayList<Promocion>();
 	private List<Ofertable> sugerencias = new ArrayList<Ofertable>();
-
-	public void agregarAtraccionesALista(Ofertable ofertable, List<Ofertable> listaAtracciones) {
-		if (ofertable.esPromocion()) {
-			for (int i = 0; i < ofertable.getAtraccionesList().size(); i++) {
-				listaAtracciones.add(this.atraccionesList.get(i));
-			}
-		} else {
-			listaAtracciones.add(ofertable);
-		}
-	}
+//	private List<Ofertable> atraccionesAceptadas = new ArrayList<Ofertable>();
 
 	public void crearAtracciones() throws SQLException {
 		AtraccionDAO adao = new AtraccionDAO();
@@ -83,21 +74,25 @@ public class Parque {
 		List<Ofertable> atraccionesAceptadas = new ArrayList<Ofertable>();
 		List<Ofertable> itinerario = new ArrayList<Ofertable>();
 		
+		ItinerarioDAO idao = new ItinerarioDAO();
+		
 		UsuarioDAO udao = new UsuarioDAO();		
 		int usuarioId = udao.findIdByName(usuario.getNombre());
 		
+		PromocionDAO pdao = new PromocionDAO();
+		AtraccionDAO adao = new AtraccionDAO();
+		
+				
 		for (int i = 0; i < sugerencias.size(); i++) {
 		if (usuario.getTiempo() > tiempoMinimoAtraccionOPromocion()
 				&& usuario.getPresupuesto() > costoMinimoAtraccionOPromocion()) {			
 			if (sugerencias.get(i).esPromocion()) {
 				if (!estaAtraccionEnPromocion( sugerencias.get(i), atraccionesAceptadas)
-						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() < usuario.getPresupuesto()
-						&& sugerencias.get(i).getTiempo() < usuario.getTiempo()) {
+						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
+						&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
 					if (usuario.aceptaOferta(sugerencias.get(i))) {
-						
-						PromocionDAO pdao = new PromocionDAO();
+												
 						int promoId = pdao.findIdByName(sugerencias.get(i).getNombre());
-						ItinerarioDAO idao = new ItinerarioDAO();
 						idao.insert(usuarioId, promoId, 0);
 						
 						ofertaAceptada(usuario, itinerario, i, atraccionesAceptadas);
@@ -105,13 +100,11 @@ public class Parque {
 				}
 			} else if (!sugerencias.get(i).esPromocion()) {
 				if (!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas)
-						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() < usuario.getPresupuesto()
-						&& sugerencias.get(i).getTiempo() < usuario.getTiempo()) {
+						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
+						&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
 					if (usuario.aceptaOferta(sugerencias.get(i))) {
 						
-						AtraccionDAO adao = new AtraccionDAO();
 						int atracId = adao.findIdByName(sugerencias.get(i).getNombre());
-						ItinerarioDAO idao = new ItinerarioDAO();
 						idao.insert(usuarioId, 0, atracId);
 						
 						ofertaAceptada(usuario, itinerario, i, atraccionesAceptadas);
@@ -129,6 +122,16 @@ public class Parque {
 		sugerencias.get(i).reservarCupo();
 		itinerario.add(sugerencias.get(i));
 		this.agregarAtraccionesALista(sugerencias.get(i), atraccionesAceptadas);
+	}
+	
+	public void agregarAtraccionesALista(Ofertable ofertable, List<Ofertable> atraccionesAceptadas) {
+		if (ofertable.esPromocion()) {
+			for (int i = 0; i < ofertable.getAtraccionesList().size(); i++) {
+				atraccionesAceptadas.add(this.atraccionesList.get(i));
+			}
+		} else {
+			atraccionesAceptadas.add(ofertable);
+		}
 	}
 
 	public boolean estaAtraccionEnAtracciones(Ofertable unaAtraccion2, List<Ofertable> atraccionesAceptadas) {

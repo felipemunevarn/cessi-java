@@ -48,7 +48,6 @@ public class Promocion implements Ofertable {
 
 	@Override
 	public Double getTiempo() {
-		// TODO Auto-generated method stub
 		double tiempoHastaAhora = 0;
 		for (int i = 0; i < atraccionesList.size(); i++) {
 			tiempoHastaAhora += atraccionesList.get(i).getTiempo();
@@ -58,7 +57,6 @@ public class Promocion implements Ofertable {
 
 	@Override
 	public void reservarCupo() {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < atraccionesList.size(); i++) {
 			atraccionesList.get(i).reservarCupo();
 		}
