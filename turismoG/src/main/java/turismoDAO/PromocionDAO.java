@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import turismo.DAO.ConnectionProvider;
 import turismoModel.Absoluto;
 import turismoModel.Atraccion;
 import turismoModel.AxB;
@@ -88,5 +89,15 @@ public class PromocionDAO {
 			atracciones.add(AtraccionDAO.findByID(res.getInt("atraccionID")));
 		}
 		return atracciones;
+	}
+	
+	public int findIdByName(String name) throws SQLException {
+		Connection con = ConnectionProvider.getConnection();
+		String sql = "SELECT id FROM promocion WHERE nombre = ?";
+		PreparedStatement sta = con.prepareStatement(sql);
+		sta.setString(1, name);
+		ResultSet res = sta.executeQuery();
+		res.next();
+		return res.getInt("id");
 	}
 }

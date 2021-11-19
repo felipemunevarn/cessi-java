@@ -10,6 +10,7 @@ import java.util.List;
 import turismo.model.AxB;
 import turismo.model.ConDescuento;
 import turismo.model.Porcentual;
+import turismoDAO.ConnectionProvider;
 
 public class PromocionDAO {
 
@@ -87,5 +88,15 @@ public class PromocionDAO {
 			atracciones.add(res.getInt("atraccionID"));
 		}
 		return atracciones;
+	}
+	
+	public int findIdByName(String name) throws SQLException {
+		Connection con = ConnectionProvider.getConnection();
+		String sql = "SELECT id FROM promocion WHERE nombre = ?";
+		PreparedStatement sta = con.prepareStatement(sql);
+		sta.setString(1, name);
+		ResultSet res = sta.executeQuery();
+		res.next();
+		return res.getInt("id");
 	}
 }

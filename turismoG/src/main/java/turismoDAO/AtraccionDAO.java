@@ -42,7 +42,7 @@ public class AtraccionDAO {
 	
 	public static Atraccion findByID(int atraccID) throws SQLException {
 		Connection con = ConnectionProvider.getConnection();
-		String sql = "SELECT * FROM atraccion WHERE cupo >= ?";
+		String sql = "SELECT * FROM atraccion WHERE id = ?";
 		PreparedStatement sta = con.prepareStatement(sql);
 		sta.setLong(1, atraccID);
 		ResultSet res = sta.executeQuery();
@@ -91,5 +91,15 @@ public class AtraccionDAO {
 		}		
 		
 		return costo;
+	}
+	
+	public int findIdByName(String name) throws SQLException {
+		Connection con = ConnectionProvider.getConnection();
+		String sql = "SELECT id FROM atraccion WHERE nombre = ?";
+		PreparedStatement sta = con.prepareStatement(sql);
+		sta.setString(1, name);
+		ResultSet res = sta.executeQuery();
+		res.next();
+		return res.getInt("id");
 	}
 }

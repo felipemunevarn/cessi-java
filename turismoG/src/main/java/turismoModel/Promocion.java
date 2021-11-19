@@ -6,9 +6,9 @@ public class Promocion implements Ofertable {
 	protected List<Atraccion> atraccionesList;
 	protected String nombre;
 
-	public Promocion(String nombre, List<Atraccion> atraccionesList2) {
+	public Promocion(String nombre, List<Atraccion> atraccionesList) {
 		this.nombre = nombre;
-		this.atraccionesList = atraccionesList2;
+		this.atraccionesList = atraccionesList;
 	}
 
 	@Override

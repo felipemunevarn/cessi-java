@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.List;
 
 import turismoDAO.AtraccionDAO;
+import turismoDAO.ConnectionProvider;
+import turismoDAO.ItinerarioDAO;
 import turismoDAO.PromocionDAO;
 import turismoDAO.UsuarioDAO;
 
@@ -78,24 +80,27 @@ public class Parque {
 		return tiempoMinimo;
 	}
 
-	public void ofertarMientrasHayaOroYtiempo(Usuario usuario) throws IOException {
-
+	public void ofertarMientrasHayaOroYtiempo(Usuario usuario) throws IOException, SQLException {
 		List<Ofertable> atraccionesAceptadas = new ArrayList<Ofertable>();
 		List<Ofertable> itinerario = new ArrayList<Ofertable>();
-		int i = 0;
-		this.ordenarSugerencias();
-		this.listaSugerencias();
-
-		while (usuario.getTiempo() > tiempoMinimoAtraccionOPromocion()
-				&& usuario.getPresupuesto() > costoMinimoAtraccionOPromocion()) {
-			if (i == sugerencias.size()) {
-				i = 0;
-			}
+		
+		UsuarioDAO udao = new UsuarioDAO();		
+		int usuarioId = udao.findIdByName(usuario.getNombre());
+		
+		for (int i = 0; i < sugerencias.size(); i++) {
+		if (usuario.getTiempo() > tiempoMinimoAtraccionOPromocion()
+				&& usuario.getPresupuesto() > costoMinimoAtraccionOPromocion()) {			
 			if (sugerencias.get(i).esPromocion()) {
 				if (!estaAtraccionEnPromocion( sugerencias.get(i), atraccionesAceptadas)
 						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() < usuario.getPresupuesto()
 						&& sugerencias.get(i).getTiempo() < usuario.getTiempo()) {
 					if (usuario.aceptaOferta(sugerencias.get(i))) {
+						
+						PromocionDAO pdao = new PromocionDAO();
+						int promoId = pdao.findIdByName(sugerencias.get(i).getNombre());
+						ItinerarioDAO idao = new ItinerarioDAO();
+						idao.insert(usuarioId, promoId, 0);
+						
 						ofertaAceptada(usuario, itinerario, i, atraccionesAceptadas);
 					}
 				}
@@ -104,14 +109,18 @@ public class Parque {
 						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() < usuario.getPresupuesto()
 						&& sugerencias.get(i).getTiempo() < usuario.getTiempo()) {
 					if (usuario.aceptaOferta(sugerencias.get(i))) {
+						
+						AtraccionDAO adao = new AtraccionDAO();
+						int atracId = adao.findIdByName(sugerencias.get(i).getNombre());
+						ItinerarioDAO idao = new ItinerarioDAO();
+						idao.insert(usuarioId, 0, atracId);
+						
 						ofertaAceptada(usuario, itinerario, i, atraccionesAceptadas);
 					}
 				}
 			}
-			if (i < sugerencias.size()) {
-				i++;
-			}
 			usuario.setItinerario(itinerario);
+		}
 		}
 	}
 
@@ -170,34 +179,28 @@ public class Parque {
 		return usuariosList;
 	}
 
-	public void ofertarMientrasHayaOroYtiempoAtodosLosUsuarios() throws IOException {
+	public void ofertarMientrasHayaOroYtiempoAtodosLosUsuarios() throws IOException, SQLException {
 		for (int i = 0; i < usuariosList.size(); i++) {
 			mensajeBienvenida();
 			System.out.println("Bienvenido/a: " + usuariosList.get(i).getNombre());
 			ofertarMientrasHayaOroYtiempo(usuariosList.get(i));
 			imprimirItinerario(usuariosList.get(i));
+			actualizarDatosUserBD(usuariosList.get(i));
+			System.out.println("-----------------------------------------------------------------");
 			System.out.println("-----------------------------------------------------------------");
 		}
+	}
+
+	private void actualizarDatosUserBD(Usuario usuario) {
+		System.out.println(usuario.getNombre());
+		System.out.println(usuario.getPresupuesto());
+		System.out.println(usuario.getTiempo());		
 	}
 
 	public void mensajeBienvenida() {
 		System.out.println("Bienvenido/a Turismo en la Tierra Media!");
 		System.out.println(
-				"A continuaci�n encontrar�s nuestras Atracciones y Promociones. Pulsa S para aceptar, o N para rechazar");
+				"A continuación encontrarás nuestras Atracciones y Promociones. Pulsa S para aceptar, o N para rechazar");
 		System.out.println("-----------------------------------------------------------------");
-	}
-
-	public static void main(String[] args) throws IOException, SQLException {
-
-		Parque sistema = new Parque();
-
-		sistema.crearUsuarios();
-		sistema.crearAtracciones();
-		sistema.crearPromociones();
-
-		sistema.ordenarSugerencias();
-		sistema.listaSugerencias();
-
-		sistema.ofertarMientrasHayaOroYtiempoAtodosLosUsuarios();
 	}
 }

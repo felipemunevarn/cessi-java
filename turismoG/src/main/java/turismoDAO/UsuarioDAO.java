@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import turismo.DAO.ConnectionProvider;
 import turismoModel.Usuario;
 
 public class UsuarioDAO {
@@ -29,5 +30,15 @@ public class UsuarioDAO {
 		int presupuesto = res.getInt("presupuesto");
 		double tiempoDisponible = res.getDouble("tiempoDisponible");
 		return new Usuario(nombre, presupuesto, tiempoDisponible);
+	}
+	
+	public int findIdByName(String name) throws SQLException {
+		Connection con = ConnectionProvider.getConnection();
+		String sql = "SELECT id FROM usuario WHERE nombre = ?";
+		PreparedStatement sta = con.prepareStatement(sql);
+		sta.setString(1, name);
+		ResultSet res = sta.executeQuery();
+		res.next();
+		return res.getInt("id");
 	}
 }

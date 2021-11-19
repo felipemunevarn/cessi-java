@@ -33,7 +33,7 @@ public class Descuento extends Promocion {
 		for (Atraccion atraccion : atraccionesList) {
 			System.out.println(atraccion.getNombre());
 		}
-		System.out.println("Duraci�n: " + this.getTiempo());
+		System.out.println("Duración: " + this.getTiempo());
 		System.out.println("Precio original: " + this.getCostoSinDescuento());
 		System.out.println("Precio con descuento: " + this.getCosto());
 		System.out.println("Descuento: " + this.porcentaje + " %");

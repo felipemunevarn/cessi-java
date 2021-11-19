@@ -54,9 +54,9 @@ public class Atraccion implements Ofertable {
 
 	@Override
 	public void imprimirOferta() {
-		System.out.println("Nombre de la atracci�n: " + this.getNombre() + ".");
+		System.out.println("Nombre de la atracción: " + this.getNombre() + ".");
 		System.out.println("Costo: " + this.getCosto() + " monedas.");
-		System.out.println("Duraci�n: " + this.getTiempo() + " horas.");
+		System.out.println("Duración: " + this.getTiempo() + " horas.");
 		System.out.println("-----------------------------------------------------------------");
 	}
 
@@ -66,9 +66,14 @@ public class Atraccion implements Ofertable {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "Atraccion [cupo=" + cupo + ", costo=" + costo + ", nombre=" + nombre + ", tiempo=" + tiempo + "]";
+	}
+
 //	@Override
 //	public void agregarAtraccionesALista(Ofertable ofertable, List<Atraccion> listaAtracciones) {
 //		listaAtracciones.add((Atraccion) ofertable);
 //	}
-
+	
 }

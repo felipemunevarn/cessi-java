@@ -23,6 +23,19 @@ public class AxB extends Promocion {
 		}
 		return this.getCostoSinDescuento() - costoAtraccionesGratis;
 	}
+	
+	@Override
+	public Integer getCostoSinDescuento() {
+		int costoTotal = 0;
+		int costoAtraccionesGratis = 0;
+		for (int i = 0; i < atraccionesList.size(); i++) {
+			costoTotal += atraccionesList.get(i).getCosto();
+		}
+		for (int i = 0; i < atraccionesGratis.size(); i++) {
+			costoAtraccionesGratis += atraccionesGratis.get(i).getCosto();
+		}
+		return costoTotal + costoAtraccionesGratis;
+	}
 
 	public String getNombre() {
 		return this.nombre;
@@ -41,10 +54,9 @@ public class AxB extends Promocion {
 		for (Atraccion atraccion : atraccionesGratis) {
 			System.out.println(atraccion.getNombre());
 		}
-		System.out.println("Duraci�n: " + this.getTiempo());
+		System.out.println("Duración: " + this.getTiempo());
 		System.out.println("Precio original: " + this.getCostoSinDescuento());
 		System.out.println("Precio con descuento: " + this.getCosto());
 		System.out.println("-----------------------------------------------------------------");
 	}
-
 }
