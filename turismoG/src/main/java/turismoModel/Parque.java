@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 import turismoDAO.AtraccionDAO;
-import turismoDAO.ConnectionProvider;
 import turismoDAO.ItinerarioDAO;
 import turismoDAO.PromocionDAO;
 import turismoDAO.UsuarioDAO;
@@ -191,10 +190,10 @@ public class Parque {
 		}
 	}
 
-	private void actualizarDatosUserBD(Usuario usuario) {
-		System.out.println(usuario.getNombre());
-		System.out.println(usuario.getPresupuesto());
-		System.out.println(usuario.getTiempo());		
+	private void actualizarDatosUserBD(Usuario usuario) throws SQLException {
+		UsuarioDAO udao = new UsuarioDAO();
+		int userID = udao.findIdByName(usuario.getNombre());
+		udao.updatePresupuestoYTiempo(userID, usuario.getPresupuesto(), usuario.getTiempo());
 	}
 
 	public void mensajeBienvenida() {

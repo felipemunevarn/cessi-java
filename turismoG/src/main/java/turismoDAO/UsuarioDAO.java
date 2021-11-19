@@ -41,4 +41,15 @@ public class UsuarioDAO {
 		res.next();
 		return res.getInt("id");
 	}
+
+	public void updatePresupuestoYTiempo(int userID, int presupuesto, double tiempo) throws SQLException {
+		Connection con = ConnectionProvider.getConnection();
+		String sql = "UPDATE usuario SET presupuesto = ?, tiempoDisponible = ? WHERE id = ?";
+		PreparedStatement sta = con.prepareStatement(sql);
+		sta.setLong(1, presupuesto);
+		sta.setDouble(2, tiempo);
+		sta.setLong(3, userID);		
+		sta.executeUpdate();
+	}
+		
 }
