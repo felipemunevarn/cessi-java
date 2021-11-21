@@ -24,11 +24,15 @@ public class PromocionDAO {
 		List<AxB> todas = new LinkedList<AxB>();
 		
 		while (res.next()) {
-			List<Atraccion> atracciones = findAtraccionesByPromo(res.getInt("id"));
-			List<Atraccion> gratis = findGratisByPromo(res.getInt("id"));
-			todas.add(new AxB(res.getString("nombre"), atracciones, gratis));
+			createNewAxB(res, todas);
 		}
 		return todas;
+	}
+
+	public static void createNewAxB(ResultSet res, List<AxB> todas) throws SQLException {
+		List<Atraccion> atracciones = findAtraccionesByPromo(res.getInt("id"));
+		List<Atraccion> gratis = findGratisByPromo(res.getInt("id"));
+		todas.add(new AxB(res.getString("nombre"), atracciones, gratis));
 	}
 	
 	public List<Absoluto> findAllAbsoluto() throws SQLException {
@@ -40,10 +44,14 @@ public class PromocionDAO {
 		List<Absoluto> todas = new LinkedList<Absoluto>();
 		
 		while (res.next()) {
-			List<Atraccion> atracciones = findAtraccionesByPromo(res.getInt("id"));
-			todas.add(new Absoluto(res.getString("nombre"), atracciones, res.getInt("precio")));
+			createNewAbs(res, todas);
 		}
 		return todas;
+	}
+
+	public static void createNewAbs(ResultSet res, List<Absoluto> todas) throws SQLException {
+		List<Atraccion> atracciones = findAtraccionesByPromo(res.getInt("id"));
+		todas.add(new Absoluto(res.getString("nombre"), atracciones, res.getInt("precio")));
 	}
 
 	public List<Descuento> findAllDescuento() throws SQLException {
@@ -55,13 +63,17 @@ public class PromocionDAO {
 		List<Descuento> todas = new LinkedList<Descuento>();
 		
 		while (res.next()) {
-			List<Atraccion> atracciones = findAtraccionesByPromo(res.getInt("id"));
-			todas.add(new Descuento(res.getString("nombre"), res.getInt("descuento"), atracciones));
+			createNewDcto(res, todas);
 		}
 		return todas;
 	}
+
+	public static void createNewDcto(ResultSet res, List<Descuento> todas) throws SQLException {
+		List<Atraccion> atracciones = findAtraccionesByPromo(res.getInt("id"));
+		todas.add(new Descuento(res.getString("nombre"), res.getInt("descuento"), atracciones));
+	}
 	
-	private List<Atraccion> findGratisByPromo(int promoID) throws SQLException {
+	private static List<Atraccion> findGratisByPromo(int promoID) throws SQLException {
 		Connection con = ConnectionProvider.getConnection();
 		String sql = "SELECT atraccionID FROM promoAxB_gratuita WHERE promocionID = ?";
 		PreparedStatement sta = con.prepareStatement(sql);
@@ -76,7 +88,7 @@ public class PromocionDAO {
 		return gratis;
 	}
 
-	private List<Atraccion> findAtraccionesByPromo(int promoID) throws SQLException {
+	private static List<Atraccion> findAtraccionesByPromo(int promoID) throws SQLException {
 		Connection con = ConnectionProvider.getConnection();
 		String sql = "SELECT atraccionID FROM promo_atraccion WHERE promocionID = ?";
 		PreparedStatement sta = con.prepareStatement(sql);

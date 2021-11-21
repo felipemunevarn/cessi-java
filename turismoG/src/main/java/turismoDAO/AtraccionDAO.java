@@ -55,7 +55,7 @@ public class AtraccionDAO {
 		return filtrada;
 	}
 
-	private static Atraccion toAtraccion(ResultSet res) throws SQLException {
+	public static Atraccion toAtraccion(ResultSet res) throws SQLException {
 		String nombre = res.getString("nombre");
 		int costo = res.getInt("costo");
 		double duracion = res.getDouble("duracion");

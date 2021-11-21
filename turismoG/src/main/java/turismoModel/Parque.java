@@ -73,20 +73,30 @@ public class Parque {
 	public void ofertarMientrasHayaOroYtiempo(Usuario usuario) throws IOException, SQLException {
 		List<Ofertable> atraccionesAceptadas = new ArrayList<Ofertable>();
 		List<Ofertable> itinerario = new ArrayList<Ofertable>();
-		
-		ItinerarioDAO idao = new ItinerarioDAO();
+		List<Atraccion> atraccPreviasAceptadas = new ArrayList<Atraccion>();
+		List<Promocion> promoPreviasAceptadas = new ArrayList<Promocion>();
 		
 		UsuarioDAO udao = new UsuarioDAO();		
 		int usuarioId = udao.findIdByName(usuario.getNombre());
 		
+		ItinerarioDAO idao = new ItinerarioDAO();
+		atraccPreviasAceptadas = idao.findAtracByUserId(usuarioId);
+		for (Atraccion atraccion : atraccPreviasAceptadas) {
+			agregarAtraccionesALista(atraccion, atraccionesAceptadas);
+		}
+		promoPreviasAceptadas = idao.findPromoByUserId(usuarioId);
+		for (Promocion promo : promoPreviasAceptadas) {
+			agregarAtraccionesALista(promo, atraccionesAceptadas);
+		}
+		
 		PromocionDAO pdao = new PromocionDAO();
 		AtraccionDAO adao = new AtraccionDAO();
-		
 				
 		for (int i = 0; i < sugerencias.size(); i++) {
 		if (usuario.getTiempo() > tiempoMinimoAtraccionOPromocion()
 				&& usuario.getPresupuesto() > costoMinimoAtraccionOPromocion()) {			
 			if (sugerencias.get(i).esPromocion()) {
+				System.out.println(!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas));
 				if (!estaAtraccionEnPromocion( sugerencias.get(i), atraccionesAceptadas)
 						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
 						&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
@@ -99,6 +109,7 @@ public class Parque {
 					}
 				}
 			} else if (!sugerencias.get(i).esPromocion()) {
+				System.out.println(!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas));
 				if (!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas)
 						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
 						&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
