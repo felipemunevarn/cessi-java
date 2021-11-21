@@ -18,7 +18,6 @@ public class Parque {
 	private List<Usuario> usuariosList = new ArrayList<Usuario>();
 	private List<Promocion> promosList = new ArrayList<Promocion>();
 	private List<Ofertable> sugerencias = new ArrayList<Ofertable>();
-//	private List<Ofertable> atraccionesAceptadas = new ArrayList<Ofertable>();
 
 	public void crearAtracciones() throws SQLException {
 		AtraccionDAO adao = new AtraccionDAO();
@@ -96,7 +95,6 @@ public class Parque {
 		if (usuario.getTiempo() > tiempoMinimoAtraccionOPromocion()
 				&& usuario.getPresupuesto() > costoMinimoAtraccionOPromocion()) {			
 			if (sugerencias.get(i).esPromocion()) {
-				System.out.println(!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas));
 				if (!estaAtraccionEnPromocion( sugerencias.get(i), atraccionesAceptadas)
 						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
 						&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
@@ -109,7 +107,6 @@ public class Parque {
 					}
 				}
 			} else if (!sugerencias.get(i).esPromocion()) {
-				System.out.println(!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas));
 				if (!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas)
 						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
 						&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
@@ -149,7 +146,7 @@ public class Parque {
 
 		for (Ofertable unaAtraccion : atraccionesAceptadas) {
 
-			if (unaAtraccion.equals(unaAtraccion2)) {
+			if (unaAtraccion.getNombre().equals(unaAtraccion2.getNombre())) {
 				return true;
 			}
 		}
