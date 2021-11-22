@@ -30,7 +30,7 @@ public class Atraccion implements Ofertable {
 		return this.tiempo;
 	}
 
-	public int getCupo() {
+	public Integer getCupo() {
 		return this.cupo;
 	}
 
@@ -70,7 +70,8 @@ public class Atraccion implements Ofertable {
 	public String toString() {
 		return "Atraccion [cupo=" + cupo + ", costo=" + costo + ", nombre=" + nombre + ", tiempo=" + tiempo + "]";
 	}
-
+	
+	
 //	@Override
 //	public void agregarAtraccionesALista(Ofertable ofertable, List<Atraccion> listaAtracciones) {
 //		listaAtracciones.add((Atraccion) ofertable);

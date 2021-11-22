@@ -92,43 +92,51 @@ public class Parque {
 		AtraccionDAO adao = new AtraccionDAO();
 				
 		for (int i = 0; i < sugerencias.size(); i++) {
-		if (usuario.getTiempo() > tiempoMinimoAtraccionOPromocion()
-				&& usuario.getPresupuesto() > costoMinimoAtraccionOPromocion()) {			
-			if (sugerencias.get(i).esPromocion()) {
-				if (!estaAtraccionEnPromocion( sugerencias.get(i), atraccionesAceptadas)
-						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
-						&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
-					if (usuario.aceptaOferta(sugerencias.get(i))) {
-												
-						int promoId = pdao.findIdByName(sugerencias.get(i).getNombre());
-						idao.insert(usuarioId, promoId, 0);
-						
-						ofertaAceptada(usuario, itinerario, i, atraccionesAceptadas);
+			if (usuario.getTiempo() > tiempoMinimoAtraccionOPromocion()
+					&& usuario.getPresupuesto() > costoMinimoAtraccionOPromocion()) {			
+				if (sugerencias.get(i).esPromocion()) {
+					if (!estaAtraccionEnPromocion( sugerencias.get(i), atraccionesAceptadas)
+							&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
+							&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
+						if (usuario.aceptaOferta(sugerencias.get(i))) {
+													
+							int promoId = pdao.findIdByName(sugerencias.get(i).getNombre());
+							idao.insert(usuarioId, promoId, 0);
+							
+							ofertaAceptada(usuario, itinerario, i, atraccionesAceptadas);
+						}
+					}
+				} else if (!sugerencias.get(i).esPromocion()) {
+					if (!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas)
+							&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
+							&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
+						if (usuario.aceptaOferta(sugerencias.get(i))) {
+							
+							int atracId = adao.findIdByName(sugerencias.get(i).getNombre());
+							idao.insert(usuarioId, 0, atracId);
+							
+							ofertaAceptada(usuario, itinerario, i, atraccionesAceptadas);
+						}
 					}
 				}
-			} else if (!sugerencias.get(i).esPromocion()) {
-				if (!estaAtraccionEnAtracciones(sugerencias.get(i), atraccionesAceptadas)
-						&& sugerencias.get(i).hayCupo() && sugerencias.get(i).getCosto() <= usuario.getPresupuesto()
-						&& sugerencias.get(i).getTiempo() <= usuario.getTiempo()) {
-					if (usuario.aceptaOferta(sugerencias.get(i))) {
-						
-						int atracId = adao.findIdByName(sugerencias.get(i).getNombre());
-						idao.insert(usuarioId, 0, atracId);
-						
-						ofertaAceptada(usuario, itinerario, i, atraccionesAceptadas);
-					}
-				}
+				usuario.setItinerario(itinerario);
 			}
-			usuario.setItinerario(itinerario);
-		}
 		}
 	}
 
-	public void ofertaAceptada(Usuario usuario, List<Ofertable> itinerario, int i, List<Ofertable> atraccionesAceptadas) {
+	public void ofertaAceptada(Usuario usuario, List<Ofertable> itinerario, int i, List<Ofertable> atraccionesAceptadas) throws SQLException {
 		usuario.restarPresupuesto(sugerencias.get(i).getCosto());
 		usuario.restarTiempo(sugerencias.get(i).getTiempo());
 		sugerencias.get(i).reservarCupo();
+		if (!sugerencias.get(i).esPromocion()) {
+			int atracId = AtraccionDAO.findIdByName(sugerencias.get(i).getNombre());
+			AtraccionDAO.updateCupo(atracId, sugerencias.get(i).getCupo());
+		} else {
+			int promoId = PromocionDAO.findIdByName(sugerencias.get(i).getNombre());
+		}
+		
 		itinerario.add(sugerencias.get(i));
+		
 		this.agregarAtraccionesALista(sugerencias.get(i), atraccionesAceptadas);
 	}
 	

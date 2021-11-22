@@ -1,5 +1,6 @@
 package turismoModel;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface Ofertable {
@@ -18,7 +19,7 @@ public interface Ofertable {
 
 // 	si hay cupo , resta un cupo disponible en las atracciones involucradas.
 
-	public void reservarCupo();
+	public void reservarCupo() throws SQLException;
 
 
 //	devuelve el nombre del ofertable.
@@ -42,4 +43,6 @@ public interface Ofertable {
 //	public void agregarAtraccionesALista(Ofertable ofertable, List<Atraccion> listaAtracciones);
 	
 //	agrega atracciones a una lista que se utilizar� para revisar los ofertables ya comprados por el usuario.
+	
+	public Integer getCupo();
 }

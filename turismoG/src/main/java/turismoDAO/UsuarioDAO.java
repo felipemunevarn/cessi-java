@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import turismo.DAO.ConnectionProvider;
 import turismoModel.Usuario;
 
 public class UsuarioDAO {

@@ -1,6 +1,9 @@
 package turismoModel;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import turismoDAO.AtraccionDAO;
 
 public class Promocion implements Ofertable {
 	protected List<Atraccion> atraccionesList;
@@ -56,9 +59,11 @@ public class Promocion implements Ofertable {
 	}
 
 	@Override
-	public void reservarCupo() {
+	public void reservarCupo() throws SQLException {
 		for (int i = 0; i < atraccionesList.size(); i++) {
 			atraccionesList.get(i).reservarCupo();
+			int atracId = AtraccionDAO.findIdByName(atraccionesList.get(i).getNombre());
+			AtraccionDAO.updateCupo(atracId, atraccionesList.get(i).getCupo());
 		}
 	}
 

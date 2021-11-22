@@ -102,7 +102,7 @@ public class PromocionDAO {
 		return atracciones;
 	}
 	
-	public int findIdByName(String name) throws SQLException {
+	public static int findIdByName(String name) throws SQLException {
 		Connection con = ConnectionProvider.getConnection();
 		String sql = "SELECT id FROM promocion WHERE nombre = ?";
 		PreparedStatement sta = con.prepareStatement(sql);
@@ -110,5 +110,14 @@ public class PromocionDAO {
 		ResultSet res = sta.executeQuery();
 		res.next();
 		return res.getInt("id");
+	}
+	
+	public static void updateCupo(int promoID, int nuevoCupo) throws SQLException {
+		Connection con = ConnectionProvider.getConnection();
+		String sql = "UPDATE atraccion SET cupo = ? WHERE id = ?";
+		PreparedStatement sta = con.prepareStatement(sql);
+		sta.setLong(1, nuevoCupo);
+		sta.setDouble(2, promoID);
+		sta.executeUpdate();
 	}
 }
