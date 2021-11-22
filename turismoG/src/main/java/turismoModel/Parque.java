@@ -132,7 +132,8 @@ public class Parque {
 			int atracId = AtraccionDAO.findIdByName(sugerencias.get(i).getNombre());
 			AtraccionDAO.updateCupo(atracId, sugerencias.get(i).getCupo());
 		} else {
-			int promoId = PromocionDAO.findIdByName(sugerencias.get(i).getNombre());
+//			int promoId = PromocionDAO.findIdByName(sugerencias.get(i).getNombre());
+			sugerencias.get(i).reservarCupo();
 		}
 		
 		itinerario.add(sugerencias.get(i));
@@ -175,22 +176,15 @@ public class Parque {
 	public void imprimirItinerario(Usuario usuario) throws IOException {
 		int costoTotal = 0;
 		double tiempoTotal = 0.0;
-		PrintWriter salida = new PrintWriter(new FileWriter(usuario.getNombre() + " Itinerario.out"));
-
-		salida.println("Usted ha comprado: ");
 		System.out.println("Usted ha comprado: ");
 
 		for (int i = 0; i < usuario.getItinerario().size(); i++) {
 			costoTotal += usuario.getItinerario().get(i).getCosto();
 			tiempoTotal += usuario.getItinerario().get(i).getTiempo();
-			salida.println((i + 1) + ". " + usuario.getItinerario().get(i).getNombre().toUpperCase());
 			System.out.println((i + 1) + ". " + usuario.getItinerario().get(i).getNombre().toUpperCase());
-			salida.println("El costo total de su itinerario es: " + costoTotal + " monedas.");
-			salida.println("El tiempo total de su itinerario es: " + tiempoTotal + " horas.");
 			System.out.println("El costo total de su itinerario es: " + costoTotal + " monedas.");
 			System.out.println("El tiempo total de su itinerario es " + tiempoTotal + " horas.");
 		}
-		salida.close();
 	}
 
 	public List<Usuario> getUsuariosList() {

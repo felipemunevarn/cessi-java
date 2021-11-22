@@ -88,6 +88,12 @@ public class Promocion implements Ofertable {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public Integer getCupo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 //	@Override
 //	public void agregarAtraccionesALista(Ofertable ofertable, List<Atraccion> listaAtracciones) {
 //		for (int i = 0; i < getAtraccionesList().size(); i++) {
