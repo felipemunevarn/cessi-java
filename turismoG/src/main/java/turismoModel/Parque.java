@@ -131,10 +131,7 @@ public class Parque {
 		if (!sugerencias.get(i).esPromocion()) {
 			int atracId = AtraccionDAO.findIdByName(sugerencias.get(i).getNombre());
 			AtraccionDAO.updateCupo(atracId, sugerencias.get(i).getCupo());
-		} else {
-//			int promoId = PromocionDAO.findIdByName(sugerencias.get(i).getNombre());
-			sugerencias.get(i).reservarCupo();
-		}
+		} 
 		
 		itinerario.add(sugerencias.get(i));
 		

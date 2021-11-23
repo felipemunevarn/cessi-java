@@ -419,8 +419,8 @@
             </children>
             <children xsi:type="basic:PartSashContainer" xmi:id="_SY1PIUlYEeygIvqt3Hykpw" containerData="7500" selectedElement="_SY1PIklYEeygIvqt3Hykpw" horizontal="true">
               <children xsi:type="basic:PartSashContainer" xmi:id="_SY1PIklYEeygIvqt3Hykpw" containerData="8000" selectedElement="_SY1PI0lYEeygIvqt3Hykpw">
-                <children xsi:type="advanced:Placeholder" xmi:id="_SY1PI0lYEeygIvqt3Hykpw" elementId="org.eclipse.ui.editorss" containerData="4164" ref="_SY45aUlYEeygIvqt3Hykpw"/>
-                <children xsi:type="basic:PartStack" xmi:id="_SY1PJElYEeygIvqt3Hykpw" elementId="bottom" containerData="5836" selectedElement="_SY1PKUlYEeygIvqt3Hykpw">
+                <children xsi:type="advanced:Placeholder" xmi:id="_SY1PI0lYEeygIvqt3Hykpw" elementId="org.eclipse.ui.editorss" containerData="7148" ref="_SY45aUlYEeygIvqt3Hykpw"/>
+                <children xsi:type="basic:PartStack" xmi:id="_SY1PJElYEeygIvqt3Hykpw" elementId="bottom" containerData="2852" selectedElement="_SY1PKUlYEeygIvqt3Hykpw">
                   <children xsi:type="advanced:Placeholder" xmi:id="_SY1PJUlYEeygIvqt3Hykpw" elementId="org.eclipse.ui.views.ProblemView" ref="_SY45nUlYEeygIvqt3Hykpw" closeable="true">
                     <tags>View</tags>
                     <tags>categoryTag:General</tags>
@@ -523,25 +523,13 @@
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
-        <children xsi:type="basic:Part" xmi:id="_TnNr4EtAEeylRbeNXIb4Lw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Promocion.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Promocion.java&quot; partName=&quot;Promocion.java&quot; title=&quot;Promocion.java&quot; tooltip=&quot;turismoG/src/main/java/turismoModel/Promocion.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/turismoG/src/main/java/turismoModel/Promocion.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;887&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>removeOnHide</tags>
-          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
-        </children>
         <children xsi:type="basic:Part" xmi:id="_lHN-8EtAEeylRbeNXIb4Lw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Parque.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Parque.java&quot; partName=&quot;Parque.java&quot; title=&quot;Parque.java&quot; tooltip=&quot;turismoG/src/main/java/turismoModel/Parque.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/turismoG/src/main/java/turismoModel/Parque.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Parque.java&quot; partName=&quot;Parque.java&quot; title=&quot;Parque.java&quot; tooltip=&quot;turismoG/src/main/java/turismoModel/Parque.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/turismoG/src/main/java/turismoModel/Parque.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;5049&quot; selectionTopPixel=&quot;1815&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>active</tags>
           <tags>activeOnClose</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_Np4VUEtBEeylRbeNXIb4Lw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="PromocionDAO.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;PromocionDAO.java&quot; partName=&quot;PromocionDAO.java&quot; title=&quot;PromocionDAO.java&quot; tooltip=&quot;turismoG/src/main/java/turismoDAO/PromocionDAO.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/turismoG/src/main/java/turismoDAO/PromocionDAO.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;4176&quot; selectionTopPixel=&quot;1704&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>removeOnHide</tags>
-          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
         </children>
       </children>
     </sharedElements>
@@ -877,7 +865,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_SY5guklYEeygIvqt3Hykpw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_4ggKoEr6EeylRbeNXIb4Lw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_SZG8bklYEeygIvqt3Hykpw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_mzYDgEuoEeyy2NS65hlMLw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_SZG8bklYEeygIvqt3Hykpw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_SY5gx0lYEeygIvqt3Hykpw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -917,7 +905,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_SY6HwUlYEeygIvqt3Hykpw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_4grJwEr6EeylRbeNXIb4Lw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_SZG76klYEeygIvqt3Hykpw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_mzibkEuoEeyy2NS65hlMLw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_SZG76klYEeygIvqt3Hykpw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_SY6HzklYEeygIvqt3Hykpw" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
